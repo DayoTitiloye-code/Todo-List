@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 export default class TodoItem extends Component {
   render() {
     return (
@@ -8,10 +10,10 @@ export default class TodoItem extends Component {
         <h6>Item</h6>
         <div className="todo-icon">
           <span className="mx-2 text-success">
-            <FontAwesomeIcon icon="fa-solid fa-pen" />
+            <FontAwesomeIcon icon={faPen} />
           </span>
           <span className="mx-2 text-danger">
-            <i class="fa-solid fa-trash"></i>
+            <FontAwesomeIcon icon={faTrash} />
           </span>
         </div>
       </li>
