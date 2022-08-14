@@ -20,7 +20,6 @@ export default class TodoInput extends Component {
           </div>
           <button
             type="submit"
-            {/* using ternary operator to change button colour based on true or false*/}
             className={
               editItem
                 ? 'btn btn-success btn-block  mt-3'
