@@ -24,10 +24,9 @@ export default class App extends Component {
 
     const newItem = {
       id: this.state.id,
-      itemName: this.state.itemName,
+      title: this.state.itemName,
     }
 
-    console.log(newItem)
     //copy array into new array using spread operator
     const updatedItems = [...this.state.items, newItem]
 
@@ -36,6 +35,33 @@ export default class App extends Component {
       itemName: '',
       id: uuidv4(),
       editItem: false,
+    })
+  }
+
+  clearList = () => {
+    this.setState({
+      items: [],
+    })
+  }
+
+  deleteItem = (id) => {
+    //using filter method, compare item by id & get items that do not have this id
+    const filteredItems = this.state.items.filter((item) => item.id !== id)
+    this.setState({
+      items: filteredItems,
+    })
+  }
+
+  editItem = (id) => {
+    const filteredItems = this.state.items.filter((item) => item.id !== id)
+
+    const selectedItem = this.state.items.find((item) => item.id === id)
+
+    this.setState({
+      items: filteredItems,
+      itemName: selectedItem.title,
+      editItem: true,
+      id: id,
     })
   }
 
@@ -50,8 +76,14 @@ export default class App extends Component {
               item={this.state.itemName}
               inputChanges={this.inputChanges}
               handleSubmit={this.handleSubmit}
+              editItem={this.state.editItem}
             />
-            <TodoList />
+            <TodoList
+              items={this.state.items}
+              clearList={this.clearList}
+              deleteItem={this.deleteItem}
+              editItem={this.editItem}
+            />
           </div>
         </div>
       </div>

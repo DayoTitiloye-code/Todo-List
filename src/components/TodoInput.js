@@ -4,7 +4,7 @@ import { faBook } from '@fortawesome/free-solid-svg-icons'
 export default class TodoInput extends Component {
   render() {
     //destructuring - used to select only part of the object
-    const { itemName, inputChanges, handleSubmit } = this.props
+    const { itemName, inputChanges, handleSubmit, editItem } = this.props
     return (
       <div className="card card-body my-3">
         <form onSubmit={handleSubmit}>
@@ -18,8 +18,17 @@ export default class TodoInput extends Component {
               onChange={inputChanges}
             />
           </div>
-          <button type="submit" className="btn btn-primary btn-block  mt-3">
-            Add Item
+          <button
+            type="submit"
+            {/* using ternary operator to change button colour based on true or false*/}
+            className={
+              editItem
+                ? 'btn btn-success btn-block  mt-3'
+                : 'btn btn-primary btn-block  mt-3'
+            }
+          >
+            {/* using ternary operator to change button text based on true or false*/}
+            {editItem ? 'Edit item' : 'Add item'}
           </button>
         </form>
       </div>
